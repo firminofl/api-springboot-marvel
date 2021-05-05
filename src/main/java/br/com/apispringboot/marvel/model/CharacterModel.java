@@ -1,5 +1,8 @@
 package br.com.apispringboot.marvel.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class CharacterModel {
@@ -7,29 +10,34 @@ public class CharacterModel {
     private String name;
     private String power;
     private int age;
-    private String dateUtil;
+
+    public static List<CharacterModel> characterModels;
+
+    static {
+        charactersRepository();
+    }
 
     public CharacterModel() {
     }
 
-    public CharacterModel(int id, String name, String power, int age, String dateUtil) {
+    public CharacterModel(int id, String name, String power, int age) {
+        this(name);
         this.id = id;
-        this.name = name;
         this.power = power;
         this.age = age;
-        this.dateUtil = dateUtil;
     }
 
     public CharacterModel(String name) {
         this.name = name;
     }
 
-    public String getDateUtil() {
-        return dateUtil;
-    }
-
-    public void setDateUtil(String dateUtil) {
-        this.dateUtil = dateUtil;
+    private static void charactersRepository() {
+        characterModels = new ArrayList<CharacterModel>(Arrays.asList(new CharacterModel(
+                1,
+                "Viúva Negra",
+                "Armas de fogo",
+                26
+        )));
     }
 
     @Override
